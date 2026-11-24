@@ -28,13 +28,15 @@
 }
 
 :root {
-  --primary-color: #4F46E5;
-  --primary-hover: #4338CA;
+  --primary-color: #0F766E;
+  --primary-hover: #115E59;
   --bg-light: #FAFAFC;
   --text-light: #FAFAFC;
   --text-dark: #0F172A;
   --border-subtle: #E2E8F0;
+  --text-secondary: #57534E;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -44,6 +46,35 @@ html {
 
 code, pre, .font-mono {
   font-family: 'JetBrains Mono', monospace;
+}
+
+/* Brand */
+.brand-logo {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-hover)
+  );
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+}
+
+
+.brand-name {
+  color: var(--text-dark);
+}
+
+.dark .brand-name {
+  color: var(--text-light);
+}
+
+.brand-name:hover {
+  color: var(--primary-color);
+}
+
+/* Navigation */
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
 }
 
 /* Custom Scrollbar */
@@ -138,12 +169,12 @@ code, pre, .font-mono {
 /* Active Nav State */
 .nav-link.active {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .dark .nav-link.active {
   color: var(--primary-hover);
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .mobile-nav-link.active {

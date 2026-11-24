@@ -1,7 +1,7 @@
 import { ArrowDownRight, Code, Download } from "lucide-react"
-import profil from '../assets/images/profil.jpg'
+import profil from '../assets/images/foto.png'
 
-function Hero() {
+function Hero({ t, profile }) {
 
   return (
     <section id="home" className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
@@ -13,36 +13,22 @@ function Hero() {
 
             {/* Column 1: Headline & Introductions */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
-
-              {/* Greeting Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-subtle-pulse"></span>
-                <span>Hello, I'm</span>
-                <span className="text-slate-400 dark:text-slate-600">|</span>
-                <span className="text-slate-600 dark:text-slate-300">
-                  Teacher &amp; Web Developer
-                </span>
-              </div>
-
+  
               {/* Main Headline */}
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-                  Rikiansyah <br className="hidden sm:inline" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-500 to-sky-500">
-                    Aris Kurniawan
+                  {profile?.firstName} <br className="hidden sm:inline" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-color)] via-[var(--primary-hover)] to-[var(--primary-hover)]">
+                    {profile?.lastName}
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, laborum.
-                </p>
+                <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300">{t.hero.subtitle}</p>
               </div>
 
               {/* Short Bio Description */}
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed mx-auto lg:mx-0 text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {t.hero.description}
               </p>
 
               {/* Call to Action Buttons */}
@@ -50,9 +36,9 @@ function Hero() {
 
                 <a
                   href="#projects"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-600/25 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5 transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold text-white bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] shadow-md shadow-600/25 hover:shadow-lg hover:shadow-indigo-600/30 hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  <span>View My Projects</span>
+                  <span>{t.hero.button}</span>
                   <ArrowDownRight className="w-5 h-5" />
                 </a>
 
@@ -61,8 +47,8 @@ function Hero() {
                   download="CV-Rikiansyah-Aris-Kurniawan.pdf"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  <Download className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                  <span>Download CV</span>
+                  <Download className="w-5 h-5 text-[var(--primary-hover)] dark:text-[var(--text-light)]" />
+                  <span>{t.hero.buttonCV}</span>
                 </a>
 
               </div>
@@ -75,16 +61,16 @@ function Hero() {
                     2+
                   </p>
                   <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
-                    Tahun Mengajar
+                    {t.year} {t.teaching}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">
+                  <p className="text-2xl sm:text-3xl font-extrabold text-[var(--primary-color)] dark:text-white">
                     15+
                   </p>
                   <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
-                    Proyek Selesai
+                    {t.project} {t.completed}
                   </p>
                 </div>
 
@@ -93,7 +79,7 @@ function Hero() {
                     40+
                   </p>
                   <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
-                    Siswa Dibimbing
+                    {t.student} {t.mentored}
                   </p>
                 </div>
 
@@ -106,7 +92,7 @@ function Hero() {
               <div className="relative w-full max-w-md">
 
                 {/* Subtle Aura Backdrop */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 via-sky-400/20 to-purple-500/10 rounded-3xl blur-2xl transform rotate-3"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-[var(--primary-color)]/20 via-[var(--primary-hover)]/20 to-[var(--primary-hover)]/10 rounded-3xl blur-2xl transform rotate-3"></div>
 
                 {/* Profile Frame Card */}
                 <div className="relative bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 shadow-xl shadow-slate-200/40 dark:shadow-none">
@@ -123,30 +109,19 @@ function Hero() {
 
                     {/* Inner gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
-
-                    {/* Floating Label at bottom of photo */}
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <p className="text-xs uppercase tracking-wider font-semibold text-indigo-300">
-                        Web Developer
-                      </p>
-                      <p className="text-sm font-bold">
-                        Rikiansyah Aris Kurniawan
-                      </p>
-                    </div>
-
                   </div>
 
                   {/* Floating Badges Over Card */}
                   <div className="mt-4 flex items-center justify-between gap-2 px-1">
 
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                      <Code className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-                      <span>Web Developer</span>
+                      <Code className="w-4 h-4 text-[var(--primary-color)] dark:text-[var(--text-light)]" />
+                      <span>{t.hero.role}</span>
                     </div>
 
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                       <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                      <span>Open to Collaboration</span>
+                      <span>{t.hero.availability}</span>
                     </div>
 
                   </div>

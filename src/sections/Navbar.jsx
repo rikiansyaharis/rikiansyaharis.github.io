@@ -1,10 +1,11 @@
-import navigation from "../data/Navigation";
+import navigation from "../data/navigation";
 import ThemeToggle from "../components/buttons/ThemeToggle";
-import ContactButton from "../components/buttons/ContactButton";
+import ContactButton from "../components/buttons/LanguageSelector";
 import MobileMenuButton from "../components/buttons/MobileMenuButton";
 import { useEffect, useRef, useState } from "react";
+import LanguageSelector from "../components/buttons/LanguageSelector";
 
-function Navbar() {
+function Navbar({ language, setLanguage, t, profile }) {
   const [isDark, setIsDark] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
@@ -28,21 +29,21 @@ function Navbar() {
 
 
   useEffect(() => {
-  const handleClickOutside = (event) => {
-    const clickedControls = mobileControlsRef.current?.contains(event.target);
-    const clickedMenu = mobileMenuRef.current?.contains(event.target);
+    const handleClickOutside = (event) => {
+      const clickedControls = mobileControlsRef.current?.contains(event.target);
+      const clickedMenu = mobileMenuRef.current?.contains(event.target);
 
-    if (!clickedControls && !clickedMenu) {
-      setIsMenuOpen(false);
-    }
-  };
+      if (!clickedControls && !clickedMenu) {
+        setIsMenuOpen(false);
+      }
+    };
 
-  document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 transition-all duration-300">
@@ -52,21 +53,21 @@ function Navbar() {
 
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 focus:outline-none group">
-              <span className="w-9 h-9 rounded-xl text-white bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center font-bold text-lg shadow-sm shadow-indigo-500/20 group-hover:scale-105 transition-transform">R</span>
+              <span className="w-9 h-9 rounded-xl text-white brand-logo flex flex items-center justify-center font-bold text-lg shadow-sm shadow-indigo-500/20 group-hover:scale-105 transition-transform">R</span>
               <span className="
-              text-xl font-extrabold tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors
-              ">Rikiansyah</span>
+              text-xl font-extrabold tracking-tight brand-name transition-colors
+              ">{profile?.firstName}</span>
             </a>
 
             {/* Navigation Links */}
             <div className="hidden xl:flex items-center gap-7">
               {navigation.map((item, index) => (
                 <a
-                  key={item.href}
+                  key={item.key}
                   href={item.href}
-                  className={`nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 ${index === 0 ? "active" : ""}`}
+                  className={`nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[var(--primary-hover)] dark:hover:text-[var(--primary-color)] ${index === 0 ? "active" : ""}`}
                 >
-                  {item.label}
+                   {t?.nav?.[item.key]}
                 </a>
               ))}
             </div>
@@ -74,14 +75,15 @@ function Navbar() {
             {/* Actions */}
             <div className="hidden md:flex items-center gap-3.5">
               <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-              <ContactButton />
+              <LanguageSelector language={language} setLanguage={setLanguage} />
             </div>
 
-              {/* Mobile Controls */}
-              <div className="flex items-center gap-2 md:hidden" ref={mobileControlsRef}>
-                <ThemeToggle isDark={isDark} onToggle={toggleTheme} className="p-2" />
-                <MobileMenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
-              </div>
+            {/* Mobile Controls */}
+            <div className="flex items-center gap-2 md:hidden" ref={mobileControlsRef}>
+              <ThemeToggle isDark={isDark} onToggle={toggleTheme} className="p-2" />
+              <LanguageSelector language={language} setLanguage={setLanguage} />
+              <MobileMenuButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+            </div>
 
           </div>
         </div>
@@ -94,10 +96,10 @@ function Navbar() {
               const Icon = item.icon;
 
               return (
-                <a key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)} className={`mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors 
+                <a key={item.key} href={item.href} onClick={() => setIsMenuOpen(false)} className={`mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors 
                     ${index === 0 ? "active" : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"}`}>
-                  <Icon className={`w-4 h-4 transition-colors duration-300 ${index === 0 ? "text-white" : "text-indigo-600 dark:text-white"}`}/>
-                  {item.label}
+                  <Icon className={`w-4 h-4 transition-colors duration-300 ${index === 0 ? "text-white" : "text-[var(--primary-hover)] dark:text-white"}`} />
+                   {t?.nav?.[item.key] || item.label}
                 </a>
               );
             })}

@@ -1,16 +1,107 @@
-# React + Vite
+# 🚀 Portfolio - Development & Deployment Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Panduan untuk menjalankan project secara lokal, melakukan update, dan deploy portfolio ke GitHub Pages menggunakan Vite dan gh-pages.
 
-Currently, two official plugins are available:
+## 🛠️ 1. Menjalankan Project di Local
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Install dependencies (cukup sekali atau jika ada dependencies baru):
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Menjalankan development server:
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Buka URL yang muncul di terminal, biasanya:
+
+```text
+http://localhost:5173/
+```
+
+## 📦 2. Menyimpan Perubahan ke GitHub
+
+Setelah selesai melakukan perubahan pada project, jalankan perintah berikut:
+
+```bash
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
+
+## 🌐 3. Deploy ke GitHub Pages
+
+Setelah perubahan berhasil di-push ke GitHub, jalankan:
+
+```bash
+npm run deploy
+```
+
+Perintah ini otomatis menjalankan:
+
+1. `npm run build` — Membuat production build.
+2. `gh-pages -d dist` — Meng-upload folder `dist` ke branch `gh-pages`.
+
+**Tidak perlu menjalankan `npm run build` secara manual**, karena sudah otomatis melalui script `predeploy`.
+
+## ⚙️ 4. Konfigurasi GitHub Pages
+
+Pastikan konfigurasi repository sudah benar:
+
+1. Buka repository di GitHub.
+2. Masuk ke **Settings → Pages**.
+3. Pada bagian Build and deployment, pilih **Deploy from a branch**.
+4. Pilih branch `gh-pages`.
+5. Pilih folder `/ (root)`.
+6. Klik **Save**.
+
+## 🔗 5. Website Portfolio
+
+Website dapat diakses melalui:
+
+```text
+https://USERNAME.github.io/NAMA-REPOSITORY/
+```
+
+Ganti `USERNAME` dan `NAMA-REPOSITORY` sesuai repository GitHub kamu.
+
+## ⚠️ 6. Catatan Penting
+
+Pastikan `vite.config.js` memiliki konfigurasi `base` sesuai nama repository.
+
+Contoh jika nama repository adalah `portfolio`:
+
+```javascript
+export default defineConfig({
+  plugins: [react()],
+  base: '/portfolio/',
+})
+```
+
+Jika repository bernama `USERNAME.github.io`, gunakan:
+
+```javascript
+base: '/',
+```
+
+---
+
+## 📝 Quick Reminder
+
+Setiap selesai mengedit portfolio dan ingin memperbarui website:
+
+```bash
+git add .
+git commit -m "Update portfolio"
+git push origin main
+npm run deploy
+```
+
+**Ingat:**
+- `git push` = Mengirim kode ke GitHub.
+- `npm run deploy` = Memperbarui website GitHub Pages.
+
+Selamat mengembangkan portfolio! 🎉
