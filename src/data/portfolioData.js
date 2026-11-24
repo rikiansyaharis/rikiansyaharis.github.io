@@ -6,7 +6,7 @@ export const portfolioData = {
     email: "rikiansyah.aris29@gmail.com",
     phone: "+62895389009911",
     location: "Indonesia",
-    photo: "assets/images/profile.png",
+    photo: "/src/assets/images/Profil.png",
     cv: "assets/files/cv.pdf",
     textWame:
       "Halo , {firstName} saya baru saja melihat portofolio Anda dan ingin berkenalan/berdiskusi.",
@@ -14,10 +14,12 @@ export const portfolioData = {
     social: {
       github: "https://github.com/rikiansyaharis",
       linkedin: "https://linkedin.com/in/",
+      instagram: "https://instagram.com/rikiansyaharis",
     },
   },
 
   id: {
+    greeting: "Halo, saya",
     year: "Tahun",
     month: "Bulan",
     day: "Hari",
@@ -27,6 +29,8 @@ export const portfolioData = {
     mentored: "Dibimbing",
     completed: "Selesai",
     teaching: "Mengajar",
+    connectWithMe: "Terhubung dengan saya:",
+    chatWhatsapp: "Diskusi via WhatsApp",
     nav: {
       home: "Beranda",
       about: "Tentang",
@@ -73,6 +77,7 @@ export const portfolioData = {
   },
 
   en: {
+    greeting: "Hello, I'm",
     year: "Year",
     month: "Month",
     day: "Day",
@@ -82,6 +87,8 @@ export const portfolioData = {
     mentored: "Mentored",
     completed: "Completed",
     teaching: "Teaching",
+    connectWithMe: "Connect with me:",
+    chatWhatsapp: "Let's Talk on WhatsApp",
     nav: {
       home: "Home",
       about: "About",

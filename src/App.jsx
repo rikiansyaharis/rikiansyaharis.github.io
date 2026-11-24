@@ -24,8 +24,9 @@ function App() {
       <Navbar language={language} setLanguage={setLanguage} t={t} profile={profile} />
       <main className="flex-grow">
         <Hero t={t} profile={profile} />
+        <About t={t} profile={profile} />
       </main>
-      <FloatingWhatsApp profile={profile} />
+      <FloatingWhatsApp profile={profile} t={t} />
     </div>
   )
 }

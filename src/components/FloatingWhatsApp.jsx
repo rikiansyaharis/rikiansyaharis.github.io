@@ -1,36 +1,21 @@
 
-function FloatingWhatsApp({ profile }) {
+function FloatingWhatsApp({ profile, t }) {
   const phone = profile?.phone;
   const message = profile?.textWame?.replace("{firstName}", profile?.firstName) || "Halo, saya tertarik dengan portfolio kamu.";
   const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   return (
-    <a
-      href={whatsappURL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat via WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group"
-    >
-      {/* Signal Ripple */}
-      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30"></span>
+    <div className="floating-wa-container">
+      <div className="wa-tooltip">{t.chatWhatsapp}</div>
 
-      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 [animation-delay:1s]"></span>
+      <div className="wa-ping-layer-1"></div>
+      <div className="wa-ping-layer-2"></div>
 
-      {/* WhatsApp Button */}
-      <span className="relative flex items-center justify-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-lg shadow-green-500/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#20BA5A]">
-
-        {/* WhatsApp SVG */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-8 h-8"
-        >
-          <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.36.14 11.94c0 2.1.55 4.15 1.59 5.96L0 24l6.25-1.64a11.9 11.9 0 0 0 5.82 1.48h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.5-8.42ZM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.24-.37a9.88 9.88 0 0 1-1.52-5.25c0-5.46 4.45-9.91 9.92-9.91 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.95 9.92Zm5.45-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z" />
+      <a href={whatsappURL} target="_blank" rel="noopener noreferrer" className="wa-link-btn floating-wa-btn" aria-label={t.chatWhatsapp}>
+        <svg className="w-7 h-7 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.59 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67ZM9.14 7.27C8.98 7.27 8.71 7.33 8.48 7.58C8.25 7.83 7.61 8.43 7.61 9.65C7.61 10.87 8.5 12.05 8.62 12.21C8.75 12.38 10.36 14.86 12.83 15.93C13.42 16.18 13.88 16.34 14.24 16.45C14.83 16.64 15.37 16.61 15.79 16.55C16.27 16.48 17.25 15.96 17.46 15.38C17.66 14.8 17.66 14.3 17.6 14.2C17.54 14.1 17.38 14.04 17.14 13.92C16.9 13.8 15.73 13.22 15.51 13.14C15.29 13.06 15.13 13.02 14.97 13.26C14.81 13.5 14.35 14.04 14.21 14.2C14.07 14.36 13.93 14.38 13.69 14.26C13.45 14.14 12.44 13.81 11.25 12.75C10.32 11.92 9.69 10.9 9.51 10.59C9.33 10.28 9.49 10.11 9.61 9.99C9.72 9.88 9.86 9.7 9.98 9.56C10.1 9.42 10.14 9.32 10.22 9.16C10.3 9 10.26 8.86 10.2 8.74C10.14 8.62 9.68 7.48 9.48 7.02C9.29 6.56 9.09 6.62 8.95 6.62C8.81 6.62 8.65 6.62 8.49 6.62L9.14 7.27Z" />
         </svg>
-
-      </span>
-    </a>
+      </a>
+    </div>
   );
 }
 

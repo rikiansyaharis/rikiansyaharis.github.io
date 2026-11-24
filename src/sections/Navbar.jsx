@@ -54,9 +54,14 @@ function Navbar({ language, setLanguage, t, profile }) {
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 focus:outline-none group">
               <span className="w-9 h-9 rounded-xl text-white brand-logo flex flex items-center justify-center font-bold text-lg shadow-sm shadow-indigo-500/20 group-hover:scale-105 transition-transform">R</span>
-              <span className="
-              text-xl font-extrabold tracking-tight brand-name transition-colors
-              ">{profile?.firstName}</span>
+              <div className="flex flex-col">
+                <span className="
+                text-xl font-extrabold tracking-tight brand-name transition-colors
+                ">{profile?.firstName}</span>
+                <span className="text-[10px] uppercase tracking-widest font-semibold text-[var(--text-muted)] -mt-0.5">
+                  Portfolio
+                </span>
+              </div>
             </a>
 
             {/* Navigation Links */}
