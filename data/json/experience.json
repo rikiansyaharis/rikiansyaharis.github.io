@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "key": "kodingAkademi",
+    "company": "Koding Akademi",
+    "position": {
+      "id": "Guru IT",
+      "en": "IT Teacher"
+    },
+    "description": {
+      "id": "Mengajar pemrograman, pengembangan web, game development, dan robotika kepada siswa.",
+      "en": "Teaching programming, web development, game development, and robotics to students."
+    },
+    "period": "2025 - Present",
+    "location": "Indonesia"
+  }
+]
